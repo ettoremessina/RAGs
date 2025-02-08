@@ -1,5 +1,5 @@
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_community.llms import Ollama
+from langchain_openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 from langchain_chroma import Chroma
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -10,7 +10,7 @@ def query(question):
     ollama_url = "http://localhost:11434"
     model_name = "llama3" # "gemma2" or others available in your ollama service
 
-    embedding = OllamaEmbeddings(model="nomic-embed-text", base_url=ollama_url)
+    embedding = OpenAIEmbeddings()
 
     vector_store = Chroma(
         collection_name = "split_docs", 
@@ -19,7 +19,7 @@ def query(question):
 
     retriever = vector_store.as_retriever()
 
-    llm = Ollama(model = model_name, base_url=ollama_url)
+    llm = ChatOpenAI(model="gpt-4")
     prompt = hub.pull("rlm/rag-prompt")
 
     rag_chain = (

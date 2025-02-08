@@ -1,11 +1,9 @@
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from glob import glob
 import sys
-
-ollama_url = "http://localhost:11434"
 
 pdf_files = glob('../datasets/fancy-machine-manuals/en/*.pdf')
 loaders = [PyPDFLoader(pdf) for pdf in pdf_files]
@@ -16,7 +14,7 @@ for file in loaders:
 
 splitter = RecursiveCharacterTextSplitter(chunk_size = 150, chunk_overlap = 75)
 
-embedding = OllamaEmbeddings(model="nomic-embed-text", base_url=ollama_url)
+embedding = OpenAIEmbeddings()
 
 vector_store = Chroma(
     collection_name = "split_docs", 
