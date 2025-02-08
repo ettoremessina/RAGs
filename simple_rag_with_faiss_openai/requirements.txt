@@ -1,0 +1,5 @@
+langchain-community
+langchain-core
+openai-chat
+faiss-cpu
+pypdf
