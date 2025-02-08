@@ -7,9 +7,6 @@ from langchain import hub
 import sys
 
 def query(question):
-    ollama_url = "http://localhost:11434"
-    model_name = "llama3" # "gemma2" or others available in your ollama service
-
     embedding = OpenAIEmbeddings()
 
     vector_store = Chroma(
