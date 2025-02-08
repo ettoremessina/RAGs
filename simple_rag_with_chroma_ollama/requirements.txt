@@ -1,0 +1,6 @@
+langchain-community
+langchain-core
+chromadb
+langchain-chroma
+pypdf
+
