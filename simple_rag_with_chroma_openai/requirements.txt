@@ -1,7 +1,8 @@
 langchain-community
 langchain-core
+langchain-chroma
+langchain-openai
 openai-chat
 chromadb
-langchain-chroma
 pypdf
 

@@ -1,5 +1,6 @@
 langchain-community
 langchain-core
+langchain-openai
 openai-chat
 faiss-cpu
 pypdf
