@@ -5,4 +5,5 @@ langchain-openai
 openai-chat
 chromadb
 pypdf
+flask
 
