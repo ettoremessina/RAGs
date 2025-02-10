@@ -1,12 +1,15 @@
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.llms import Ollama
 from langchain_chroma import Chroma
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, HumanMessagePromptTemplate
 #from langchain import hub
 
-embedding = OpenAIEmbeddings()
+ollama_url = "http://localhost:11434"
+model_name = "llama3.2" # "gemma2" or others available in your ollama service
+
+embedding = OllamaEmbeddings(model="nomic-embed-text", base_url=ollama_url)
 
 vector_store = Chroma(
     collection_name = "split_docs", 
@@ -15,7 +18,7 @@ vector_store = Chroma(
 
 retriever = vector_store.as_retriever()
 
-llm = ChatOpenAI(model="gpt-4", temperature=0.2, request_timeout=10)
+llm = Ollama(model = model_name, base_url=ollama_url)
 #prompt = hub.pull("rlm/rag-prompt")
 prompt = ChatPromptTemplate(
     input_variables = ['context', 'question'],
@@ -32,9 +35,9 @@ rag_chain = (
     | StrOutputParser()
 )
 
-print("Chat with me (ctrl+D to quit)!\n")
-
 while True:
     question = input("you: ")
     answer = rag_chain.invoke(question)
     print("me : ", answer, "\n")
+
+

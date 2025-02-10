@@ -1,6 +1,6 @@
 langchain-community
 langchain-core
-langchain-chroma
-chromadb
+openai-chat
+faiss-cpu
 pypdf
 flask

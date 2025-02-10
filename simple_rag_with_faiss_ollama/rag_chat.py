@@ -1,21 +1,28 @@
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
-from langchain_chroma import Chroma
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.llms import Ollama
+from langchain_community.vectorstores import FAISS
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, HumanMessagePromptTemplate
 #from langchain import hub
 
-embedding = OpenAIEmbeddings()
+ollama_url = "http://localhost:11434"
+model_name = "llama3.2" # "gemma2" or others available in your ollama service
 
-vector_store = Chroma(
-    collection_name = "split_docs", 
-    embedding_function = embedding,
-    persist_directory = "./chroma.db")
+embedding = OllamaEmbeddings(model="nomic-embed-text", base_url=ollama_url)
 
-retriever = vector_store.as_retriever()
+vector_store = FAISS.load_local(
+    "faiss.db",
+    embedding,
+    allow_dangerous_deserialization=True
+)
 
-llm = ChatOpenAI(model="gpt-4", temperature=0.2, request_timeout=10)
+retriever = vector_store.as_retriever(
+    search_type = "similarity",
+    search_kwargs = {"k": 3}
+)
+
+llm = Ollama(model = model_name, base_url=ollama_url)
 #prompt = hub.pull("rlm/rag-prompt")
 prompt = ChatPromptTemplate(
     input_variables = ['context', 'question'],
@@ -38,3 +45,4 @@ while True:
     question = input("you: ")
     answer = rag_chain.invoke(question)
     print("me : ", answer, "\n")
+

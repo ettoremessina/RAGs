@@ -1,6 +1,6 @@
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, HumanMessagePromptTemplate
@@ -8,14 +8,18 @@ from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, HumanMess
 
 embedding = OpenAIEmbeddings()
 
-vector_store = Chroma(
-    collection_name = "split_docs", 
-    embedding_function = embedding,
-    persist_directory = "./chroma.db")
+vector_store = FAISS.load_local(
+    "faiss.db",
+    embedding,
+    allow_dangerous_deserialization=True
+)
 
-retriever = vector_store.as_retriever()
+retriever = vector_store.as_retriever(
+    search_type = "similarity",
+    search_kwargs = {"k": 3}
+)
 
-llm = ChatOpenAI(model="gpt-4", temperature=0.2, request_timeout=10)
+llm = ChatOpenAI(model="gpt-4")
 #prompt = hub.pull("rlm/rag-prompt")
 prompt = ChatPromptTemplate(
     input_variables = ['context', 'question'],
@@ -38,3 +42,4 @@ while True:
     question = input("you: ")
     answer = rag_chain.invoke(question)
     print("me : ", answer, "\n")
+
