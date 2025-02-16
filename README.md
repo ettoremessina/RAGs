@@ -5,7 +5,7 @@ The goal of this repository is to share a suite of demos and examples written in
 [datasets](./datasets) folder contains datasets used by various scripts of this repo.
 
 ## simple_rag_with_chroma_ollama
-[simple_rag_with_chroma_ollama](./simple_rag_with_chroma_ollama
+[simple_rag_with_chroma_ollama](./simple_rag_with_chroma_ollama)
 folder contains a RAG demo using chroma as vector storage and Ollama as connector to connect with an llm model.
 
 ## simple_rag_with_chroma_openai
