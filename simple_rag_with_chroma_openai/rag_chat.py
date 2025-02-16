@@ -40,11 +40,11 @@ rag_chain = (
     | StrOutputParser()
 )
 
-print("Chat with me (ctrl+D to quit)!\n")
-
 config = {}
 if args.verbose:
     config = config | {'callbacks': [ConsoleCallbackHandler()]}
+
+print("Chat with me (ctrl+D to quit)!\n")
 
 while True:
     try:

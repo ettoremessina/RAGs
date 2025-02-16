@@ -46,6 +46,8 @@ config = {}
 if args.verbose:
     config = config | {'callbacks': [ConsoleCallbackHandler()]}
 
+print("Chat with me (ctrl+D to quit)!\n")
+
 while True:
     try:
         question = input("human: ")
