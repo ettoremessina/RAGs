@@ -17,7 +17,7 @@ class bcolors:
 
 parser = argparse.ArgumentParser(description='Script to chat on knowledgement base using RAG technology')
 parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
-parser.add_argument('-em', '--emodel', type=str, required=False, default='text-embedding-ada-002', help='Embeddong model name to use (default: nomic-embed-text)')
+parser.add_argument('-em', '--emodel', type=str, required=False, default='text-embedding-ada-002', help='Embedding model name to use (default: nomic-embed-text)')
 parser.add_argument('-m', '--model', type=str, required=False, default='gpt-4', help='Model name to use (e.g. gpt-4, gpt-4o-mini, ...; default: llama3.2)')
 args = parser.parse_args()
 

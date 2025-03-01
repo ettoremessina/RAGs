@@ -17,7 +17,7 @@ class bcolors:
 
 parser = argparse.ArgumentParser(description='Script to chat on knowledgement base using RAG technology')
 parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
-parser.add_argument('-em', '--emodel', type=str, required=False, default='nomic-embed-text', help='Embeddong model name to use (default: nomic-embed-text)')
+parser.add_argument('-em', '--emodel', type=str, required=False, default='nomic-embed-text', help='Embedding model name to use (default: nomic-embed-text)')
 parser.add_argument('-m', '--model', type=str, required=False, default='llama3.2', help='Model name to use (e.g. gemma2, llama3.2, ...; default: llama3.2)')
 parser.add_argument('-ou', '--ollamaurl', type=str, required=False, default='http://localhost:11434', help='Ollama url')
 args = parser.parse_args()

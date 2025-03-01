@@ -13,7 +13,7 @@ for file in loaders:
     documents.extend(file.load())
 
 parser = argparse.ArgumentParser(description='Script to build the vector storage knowledgement base')
-parser.add_argument('-em', '--emodel', type=str, required=False, default='text-embedding-ada-002', help='Embeddong model name to use')
+parser.add_argument('-em', '--emodel', type=str, required=False, default='text-embedding-ada-002', help='Embedding model name to use')
 args = parser.parse_args()
 
 embedding = OpenAIEmbeddings(model=args.emodel)

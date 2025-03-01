@@ -13,7 +13,7 @@ for file in loaders:
     documents.extend(file.load())
 
 parser = argparse.ArgumentParser(description='Script to build the vector storage knowledgement base')
-parser.add_argument('-em', '--emodel', type=str, required=False, default='nomic-embed-text', help='Embeddong model name to use')
+parser.add_argument('-em', '--emodel', type=str, required=False, default='nomic-embed-text', help='Embedding model name to use')
 parser.add_argument('-ou', '--ollamaurl', type=str, required=False, default='http://localhost:11434', help='Ollama url')
 args = parser.parse_args()
 
