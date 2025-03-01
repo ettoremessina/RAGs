@@ -8,6 +8,8 @@ The goal of this repository is to share a suite of demos and examples written in
 [simple_rag_with_chroma_ollama](./simple_rag_with_chroma_ollama)
 folder contains a RAG demo using chroma as vector storage and Ollama as connector to connect with an llm model.
 
+For details visit: [ettoremessina.tech](https://ettoremessina.tech/agentic-applications/chat-with-your-docs-1-simple-rag-with-chroma-and-ollama/)
+
 ## simple_rag_with_chroma_openai
 [simple_rag_with_chroma_openai](./simple_rag_with_chroma_openai)
 folder contains a RAG demo using chroma as vector storage and ChatOpenAi as connector to connect with an llm model.
